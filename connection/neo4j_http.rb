@@ -2,6 +2,17 @@
 
 require "neo4j/core/cypher_session/adaptors/http"
 require "neo4j/core/cypher_session"
+require "faraday"
+
+Faraday.default_adapter =
+  if RUBY_PLATFORM == "java"
+    require "manticore"
+    require "faraday/adapter/manticore"
+    require "newrelic/manticore"
+    :manticore
+  else
+    :net_http_persistent
+  end
 
 module Connection
   class Neo4jHttp
@@ -17,7 +28,15 @@ module Connection
       end
 
       def options
-        {}
+        {
+          faraday_configurator: proc do |faraday|
+            faraday.adapter Faraday.default_adapter
+            # If you need to set options which would normally be the second argument of `Faraday.new`, you can do the following:
+            faraday.options[:open_timeout] = 5
+            faraday.options[:timeout] = 60
+            # faraday.options[:ssl] = { verify: true }
+          end
+        }
       end
     end
   end

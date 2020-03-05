@@ -2,9 +2,12 @@ version: "3"
 services:
   neo4j:
     image: neo4j:4.0.1
+    environment:
+      - NEO4J_dbms_default__database=followers
     volumes:
       - "./data/:/data"
       - "./log/:/log"
     ports:
-      - 7687:7687 # HTTP
-      - 7474:7474 # Bolt (binary protocol)
+      - 7687:7687 # Bolt (binary protocol)
+      - 7473:7473 # HTTPS
+      - 7474:7474 # HTTP
