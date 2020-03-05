@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 require "neo4j/core/cypher_session/adaptors/bolt"
-require "neo4j/core/cypher_session"
 
 module Connection
-  class Neo4jBolt
+  class Neo4jBolt < Neo4jBase
     class << self
       def session
         @@session ||= Neo4j::Core::CypherSession.new(adaptor)
@@ -17,7 +16,9 @@ module Connection
       end
 
       def options
-        {}
+        super.merge(
+          connect_timeout: 10
+        )
       end
     end
   end

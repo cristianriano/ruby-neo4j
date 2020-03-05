@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "neo4j/core/cypher_session/adaptors/http"
-require "neo4j/core/cypher_session"
 require "faraday"
 
 Faraday.default_adapter =
@@ -15,7 +14,7 @@ Faraday.default_adapter =
   end
 
 module Connection
-  class Neo4jHttp
+  class Neo4jHttp < Neo4jBase
     class << self
       def session
         @@session ||= Neo4j::Core::CypherSession.new(adaptor)
@@ -28,7 +27,7 @@ module Connection
       end
 
       def options
-        {
+        super.merge(
           faraday_configurator: proc do |faraday|
             faraday.adapter Faraday.default_adapter
             # If you need to set options which would normally be the second argument of `Faraday.new`, you can do the following:
@@ -36,7 +35,7 @@ module Connection
             faraday.options[:timeout] = 60
             # faraday.options[:ssl] = { verify: true }
           end
-        }
+        )
       end
     end
   end
