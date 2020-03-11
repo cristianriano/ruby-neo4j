@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "neo4j/core/cypher_session/adaptors/bolt"
+require_relative "./neo4j_base"
 
 module Connection
   class Neo4jBolt < Neo4jBase

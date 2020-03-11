@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "neo4j/core/cypher_session/adaptors/http"
+require_relative "./neo4j_base"
 require "faraday"
 
 Faraday.default_adapter =

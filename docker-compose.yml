@@ -1,7 +1,9 @@
 version: "3"
 services:
   neo4j:
-    image: neo4j:4.0.1
+    # neo4j-core gem has a bug with the 4.0.1 version
+    # image: neo4j:4.0.1
+    image: neo4j:3.5
     environment:
       - NEO4J_dbms_default__database=followers
     volumes:

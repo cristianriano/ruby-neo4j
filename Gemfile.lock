@@ -85,6 +85,7 @@ GEM
     racksh (1.0.0)
       rack (>= 1.0)
       rack-test (>= 0.5)
+    receptacle (1.0.0)
     spoon (0.0.6)
       ffi
     thread_safe (0.3.6)
@@ -107,6 +108,7 @@ DEPENDENCIES
   net-http-persistent (~> 2.9.4)
   pry
   racksh
+  receptacle (~> 1.0)
 
 BUNDLED WITH
    2.1.4

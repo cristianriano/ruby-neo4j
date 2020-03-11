@@ -7,6 +7,7 @@ gem "dry-struct", "~> 1.3"
 gem "faraday", "~> 1"
 gem "neo4j-core", "~> 9"
 gem "net-http-persistent", "~> 2.9.4"
+gem "receptacle", "~> 1.0"
 
 platform :jruby do
   gem "manticore", "~> 0.6"
