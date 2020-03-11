@@ -23,7 +23,7 @@ module Connection
       private
 
       def adaptor
-        Neo4j::Core::CypherSession::Adaptors::HTTP.new("http://neo4j:pass@localhost:7474", options)
+        Neo4j::Core::CypherSession::Adaptors::HTTP.new("http://neo4j:rt4ever@localhost:7474", options)
       end
 
       def options
